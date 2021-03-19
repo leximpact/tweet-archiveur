@@ -1,0 +1,6 @@
+pandas
+#matplotlib
+tweepy
+python-dotenv
+psycopg2-binary
+#tqdm

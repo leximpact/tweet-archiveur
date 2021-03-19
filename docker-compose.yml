@@ -1,35 +1,68 @@
-version: "3"
+version: '3.7'
 services:
-  fastai: &fastai
-    restart: unless-stopped
-    working_dir: /data
-    image: fastai/codespaces
-    logging:
-      driver: json-file
-      options:
-        max-size: 50m
-    stdin_open: true
-    tty: true
+  tweet_archiveur:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    networks:
+      - tweet_archiveur_net
+    ports:
+    - 5079:5000
+    environment:
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASS: ${DATABASE_PASS}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      USERS_CSV: ${USERS_CSV}
+      TWITTER_CONSUMER_KEY: ${TWITTER_CONSUMER_KEY}
+      TWITTER_CONSUMER_SECRET: ${TWITTER_CONSUMER_SECRET}
+      TWITTER_BEARER_TOKEN: ${TWITTER_BEARER_TOKEN}
+
     volumes:
-      - .:/data/
+      - .:/opt/tweet_archiveur
+    depends_on:
+      - postgres
+    restart: unless-stopped
 
-  notebook:
-    <<: *fastai
-    command: bash -c "pip install -e . && jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --port=8080 --NotebookApp.token='' --NotebookApp.password=''"
+  postgres:
+    container_name: ${DATABASE_HOST}
+    environment:
+      HOSTNAME: ${DATABASE_HOST}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASS}
+      POSTGRES_USER: ${DATABASE_USER}
+    image: postgres:latest
+    networks:
+      - tweet_archiveur_net
     ports:
-      - "8080:8080"
+    - 5479:5432
+    restart: unless-stopped
+    volumes:
+    - postgres_data:/var/lib/postgresql/data:rw
 
-  watcher:
-    <<: *fastai
-    command: watchmedo shell-command --command nbdev_build_docs --pattern *.ipynb --recursive --drop
-    network_mode: host # for GitHub Codespaces https://github.com/features/codespaces/
-
-  jekyll:
-    <<: *fastai
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-test@test.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-test}
+    volumes:
+       - pgadmin:/root/.pgadmin
+       - ./docker/pgpassfile:/pgadmin4/pgpassfile
+       - ./docker/pgadmin-servers.json:/pgadmin4/servers.json
     ports:
-     - "4000:4000"
-    command: >
-     bash -c "pip install .
-     && nbdev_build_docs && cd docs
-     && bundle i
-     && chmod -R u+rwx . && bundle exec jekyll serve --host 0.0.0.0"
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - tweet_archiveur_net
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    name: postgres_tweet_archiveur_data
+  pgadmin:
+    name: pgadmin_tweet_archiveur_data
+
+networks:
+  tweet_archiveur_net:
+    name: tweet_archiveur_network
