@@ -6,8 +6,6 @@ services:
       dockerfile: ./docker/Dockerfile
     networks:
       - tweet_archiveur_net
-    ports:
-    - 5079:5000
     environment:
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASS: ${DATABASE_PASS}
@@ -36,7 +34,7 @@ services:
     networks:
       - tweet_archiveur_net
     ports:
-    - 5479:5432
+    - 8479:5432
     restart: unless-stopped
     volumes:
     - postgres_data:/var/lib/postgresql/data:rw
@@ -65,4 +63,4 @@ volumes:
 
 networks:
   tweet_archiveur_net:
-    name: tweet_archiveur_network
+    name: leximpact_network

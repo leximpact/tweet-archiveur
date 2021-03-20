@@ -8,10 +8,11 @@ until PGPASSWORD=$DATABASE_PASS psql -h "$DATABASE_HOST" -U "$DATABASE_USER" -p 
   sleep 3
 done
   
-echo "Postgres is up, start archiving !"
-python archiveur.py
+
 
 while PGPASSWORD=$DATABASE_PASS psql -h "$DATABASE_HOST" -U "$DATABASE_USER" -p "$DATABASE_PORT" -d "$DATABASE_NAME" -c '\q'; do
-  echo "Postgres is available - sleeping"
-  sleep 600
+  echo "Postgres is up, start archiving !"
+  python archiveur.py
+  echo "Sleeping 8 hours..."
+  sleep 28800
 done

@@ -27,12 +27,12 @@ def datetime_from_utc_to_local(utc_datetime):
 
 def get_user_tweets(user_id):
     auth = tweepy.AppAuthHandler(getenv("TWITTER_CONSUMER_KEY"), getenv("TWITTER_CONSUMER_SECRET"))
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
     tweets = []
+    hashtags = []
     for tweet in tweepy.Cursor(api.user_timeline, id=user_id, tweet_mode='extended').items(100):
-        #print(tweet)
-        tweet = {
-            'user_id':user_id,
+        tweet_tmp = {
+            'twitter_id':user_id,
             'tweet_id':tweet.id,
             'datetime_utc':tweet.created_at,
             'datetime_local':datetime_from_utc_to_local(tweet.created_at),
@@ -40,8 +40,16 @@ def get_user_tweets(user_id):
             'retweet':tweet.retweet_count,
             'favorite':tweet.favorite_count
         }
-        tweets.append(tweet)
-    return tweets
+        tweets.append(tweet_tmp)
+        for h in tweet.entities.get('hashtags'):
+            hashtag = {
+                'tweet_id' : tweet_tmp['tweet_id'],
+                'twitter_id' : tweet_tmp['twitter_id'],
+                'datetime_local' : tweet_tmp['datetime_local'],
+                'hashtag' : h['text']
+            }
+            hashtags.append(hashtag)
+    return tweets, hashtags
 
 # Cell
 '''
@@ -51,12 +59,18 @@ output : a list of all tweets
 '''
 def get_all_tweet(users_id, logger = None):
     tweets = []
+    hashtags = []
     total_users = len(users_id)
     for i, user_id in enumerate(users_id):
-        tweets += (get_user_tweets(user_id))
+        tweets_tmp, hashtags_tmp = get_user_tweets(user_id)
+        tweets += tweets_tmp
+        hashtags += hashtags_tmp
         if i % 10 == 0:
+            info_str = f'Processing user {i} / {total_users} ({(i*100//total_users*100)/100}%)'
             if logger is not None:
-                logger.debug(f'Processing user {i} / {total_users} - {(i*100//total_users*100)*100}%')
+                logger.debug(info_str)
+            else:
+                print(info_str)
         #if i>3:
         #    break
-    return tweets
+    return tweets, hashtags
