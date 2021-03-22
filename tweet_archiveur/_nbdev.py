@@ -2,28 +2,9 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"logger": "05_database.ipynb",
-         "logFormatter": "05_database.ipynb",
-         "database_config": "05_database.ipynb",
-         "database_url": "05_database.ipynb",
-         "db_connect": "05_database.ipynb",
-         "ENV": "05_database.ipynb",
-         "db_schema": "05_database.ipynb",
-         "twitter_users_table": "05_database.ipynb",
-         "tweets_table": "05_database.ipynb",
-         "hashtags_table": "05_database.ipynb",
-         "exec_query": "05_database.ipynb",
-         "create_tables_if_not_exist": "05_database.ipynb",
-         "insert_pandas": "05_database.ipynb",
-         "filter_str": "05_database.ipynb",
-         "printable": "05_database.ipynb",
-         "insert_twitter_users": "05_database.ipynb",
-         "insert_tweets": "05_database.ipynb",
-         "insert_hashtags": "05_database.ipynb",
-         "get_users_accounts": "10_scrapper_get_tweet.ipynb",
-         "datetime_from_utc_to_local": "10_scrapper_get_tweet.ipynb",
-         "get_user_tweets": "10_scrapper_get_tweet.ipynb",
-         "get_all_tweet": "10_scrapper_get_tweet.ipynb"}
+index = {"Database": "05_database.ipynb",
+         "Scrapper": "10_scrapper_get_tweet.ipynb",
+         "scrapper": "10_scrapper_get_tweet.ipynb"}
 
 modules = ["database.py",
            "scrapper.py"]
