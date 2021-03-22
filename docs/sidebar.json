@@ -2,7 +2,6 @@
   "tweet_archiveur": {
     "Overview": "/",
     "Database for tweets storage": "database.html",
-    "Tweet Scrapper": "scrapper_get_tweet.html",
-    "Title": "Untitled.html"
+    "Tweet Scrapper": "scrapper_get_tweet.html"
   }
 }

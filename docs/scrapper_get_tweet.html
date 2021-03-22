@@ -26,6 +26,20 @@ nb_path: "notebooks/10_scrapper_get_tweet.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>2021-03-22 10:20:39,809 -  tweet-archiveur INFO     Scrapper ready
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -47,7 +61,7 @@ nb_path: "notebooks/10_scrapper_get_tweet.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_users_accounts" class="doc_header"><code>get_users_accounts</code><a href="https://github.com/leximpact/tweet-archiveur/tree/main/tweet_archiveur/scrapper.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_users_accounts</code>(<strong><code>csv</code></strong>=<em><code>None</code></em>)</p>
+<h2 id="Scrapper" class="doc_header"><code>class</code> <code>Scrapper</code><a href="https://github.com/leximpact/tweet-archiveur/tree/main/tweet_archiveur/scrapper.py#L15" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Scrapper</code>()</p>
 </blockquote>
 
 </div>
@@ -76,55 +90,14 @@ nb_path: "notebooks/10_scrapper_get_tweet.ipynb"
 
 <div class="output_area">
 
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="datetime_from_utc_to_local" class="doc_header"><code>datetime_from_utc_to_local</code><a href="https://github.com/leximpact/tweet-archiveur/tree/main/tweet_archiveur/scrapper.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>datetime_from_utc_to_local</code>(<strong><code>utc_datetime</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>2021-03-22 10:16:08,109 -  tweet-archiveur INFO     Scrapper ready
+</pre>
 </div>
 </div>
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_user_tweets" class="doc_header"><code>get_user_tweets</code><a href="https://github.com/leximpact/tweet-archiveur/tree/main/tweet_archiveur/scrapper.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_user_tweets</code>(<strong><code>user_id</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -150,17 +123,85 @@ nb_path: "notebooks/10_scrapper_get_tweet.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">users_id</span> <span class="o">=</span> <span class="n">df_users</span><span class="o">.</span><span class="n">twitter_id</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">tweets</span><span class="p">,</span> <span class="n">hashtag</span> <span class="o">=</span> <span class="n">scrapper</span><span class="o">.</span><span class="n">get_all_tweet_as_array</span><span class="p">(</span><span class="n">users_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------ TWEETS   ---------------------------&quot;</span><span class="p">)</span>
+<span class="n">tweets</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------ HASHTAGS ---------------------------&quot;</span><span class="p">)</span>
+<span class="n">hashtag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>2021-03-22 10:16:11,898 -  tweet-archiveur DEBUG    Processing user 0 / 2 (0.0%)
+</pre>
+</div>
+</div>
 
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_all_tweet" class="doc_header"><code>get_all_tweet</code><a href="https://github.com/leximpact/tweet-archiveur/tree/main/tweet_archiveur/scrapper.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_tweet</code>(<strong><code>users_id</code></strong>, <strong><code>logger</code></strong>=<em><code>None</code></em>)</p>
-</blockquote>
+<div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>------ TWEETS   ---------------------------
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;twitter_id&#39;: 76584619,
+  &#39;tweet_id&#39;: 1373697810391044099,
+  &#39;datetime_utc&#39;: datetime.datetime(2021, 3, 21, 18, 7, 34),
+  &#39;datetime_local&#39;: datetime.datetime(2021, 3, 21, 19, 7, 34),
+  &#39;text&#39;: &#39;Superbe victoire du @nimesolympique face au leader Lille. Tous les Nîmois sont fiers de vous. Nous croyons au maintien. Le Nîmes olympique mérite sa place en @Ligue1UberEats https://t.co/PgbEk0xkOB&#39;,
+  &#39;retweet&#39;: 5,
+  &#39;favorite&#39;: 13},
+ {&#39;twitter_id&#39;: 76584619,
+  &#39;tweet_id&#39;: 1373576438469775361,
+  &#39;datetime_utc&#39;: datetime.datetime(2021, 3, 21, 10, 5, 17),
+  &#39;datetime_local&#39;: datetime.datetime(2021, 3, 21, 11, 5, 17),
+  &#39;text&#39;: &#34;Aujourd&#39;hui c&#39;est la journée mondiale de la trisomie 21. Ne les oublions pas et n&#39;oublions pas que la différence est une richesse. #Trisomie21 #JourneeMondialeDeLaTrisomie21 https://t.co/Pfp1zQckSx&#34;,
+  &#39;retweet&#39;: 89,
+  &#39;favorite&#39;: 262}]</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>------ HASHTAGS ---------------------------
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;tweet_id&#39;: 1373576438469775361,
+  &#39;twitter_id&#39;: 76584619,
+  &#39;datetime_local&#39;: datetime.datetime(2021, 3, 21, 11, 5, 17),
+  &#39;hashtag&#39;: &#39;Trisomie21&#39;},
+ {&#39;tweet_id&#39;: 1373576438469775361,
+  &#39;twitter_id&#39;: 76584619,
+  &#39;datetime_local&#39;: datetime.datetime(2021, 3, 21, 11, 5, 17),
+  &#39;hashtag&#39;: &#39;JourneeMondialeDeLaTrisomie21&#39;}]</pre>
 </div>
 
 </div>
@@ -174,20 +215,58 @@ nb_path: "notebooks/10_scrapper_get_tweet.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">environ</span>
+<span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_PORT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;8479&#39;</span>
+<span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_HOST&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_USER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tweet_archiveur_user&#39;</span>
+<span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_PASS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1234leximpact&#39;</span>
+<span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_NAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tweet_archiveur&#39;</span>
+
+<span class="kn">from</span> <span class="nn">tweet_archiveur.database</span> <span class="kn">import</span> <span class="n">Database</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">Database</span><span class="p">()</span>
+<span class="n">users_id</span> <span class="o">=</span> <span class="n">df_users</span><span class="o">.</span><span class="n">twitter_id</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">scrapper</span><span class="o">.</span><span class="n">get_all_tweet_and_store_them</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">users_id</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">database</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 <div class="output_area">
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\nGet all the tweets of all the users\ninput : a list of twitter_id\noutput : a list of all tweets\n&#39;</pre>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>2021-03-22 10:17:13,060 -  tweet-archiveur INFO     Loading database module...
+2021-03-22 10:17:13,061 -  tweet-archiveur DEBUG    DEBUG : connect(user=tweet_archiveur_user, password=XXXX, host=localhost, port=8479, database=tweet_archiveur, url=None)
+2021-03-22 10:17:17,076 -  tweet-archiveur INFO     Done scrapping, we got 400 tweets from 2 tweetos.
+</pre>
+</div>
 </div>
 
 </div>
+</div>
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">users_id</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 

@@ -15,9 +15,6 @@ entries:
     - output: web,pdf
       title: Tweet Scrapper
       url: scrapper_get_tweet.html
-    - output: web,pdf
-      title: Title
-      url: Untitled.html
     output: web
     title: tweet_archiveur
   output: web
