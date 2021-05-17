@@ -1,3 +1,13 @@
+---
+
+# The repository has now been moved to https://git.leximpact.dev/leximpact/tweet-archiveur/
+
+# Pour consulter la dernière version du projet, merci de vous rendre sur https://git.leximpact.dev/leximpact/tweet-archiveur/
+
+---
+![](changement-depot-github-gitlab-illustration-small.png)
+---
+
 # Tweet Archiveur
 > This project aim at storing tweets in a database. But you could use it without database.
 
